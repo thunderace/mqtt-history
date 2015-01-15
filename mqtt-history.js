@@ -14,7 +14,7 @@ program.version('0.0.1')
 	.parse(process.argv);
 
 //------------ DEBUG
-var debug_on = true;
+var debug_on = false;
 function debug() {
   if (debug_on) console.log.apply(this, arguments);
 }
@@ -26,7 +26,6 @@ mqttClient = mqtt.createClient(program.mqtthostname, program.mqttport, {clientId
 mqttClient.on("connect", function() {
   debug ('MQTT connected');
   mqttClient.on('message', function(topic, payload, data) {  
-    console.log(data);
     // replace all / by :
     var redisTopic = topic.replace(/\//g, ':');
     if (redisTopic[0] == ':') {
@@ -38,9 +37,9 @@ mqttClient.on("connect", function() {
         timestamp:  new Date(),
         value : payload
       };
-      redisClient.lpush('MQTTHistory3:' + redisTopic, JSON.stringify(history));
+      redisClient.lpush('mqtt-history:' + redisTopic, JSON.stringify(history));
     } else {
-      redisClient.lpush('MQTTHistory3:' + redisTopic, payload);
+      redisClient.lpush('mqtt-history:' + redisTopic, payload);
     }
   });
   mqttClient.subscribe('/#', {qos: 2}); // only once
