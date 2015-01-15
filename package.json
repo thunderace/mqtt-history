@@ -1,0 +1,32 @@
+{
+  "name": "mqtt-history",
+  "title": "mqtt-history",
+  "description": "MQTT topic historisation",
+  "version": "1.0.0",
+  "homepage": "https://github.com/thunderace/mqtt-history",
+  "main": "mqtt-history.js",
+  "author": {
+    "name": "Arnaud LAURENT",
+    "email": "thunderace@free.fr"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/thunderace/mqtt-history.git"
+  },
+  "bugs": {
+    "url": "https://github.com/thunderace/mqtt-history/issues"
+  },
+  "licenses": [
+    {
+      "type": "GNU GPL2",
+      "url": "https://github.com/thunderace/mqtt-history/blob/master/LICENSE"
+    }
+  ],
+  "keywords": [],
+  "dependencies": {
+    "commander": "^2.5.0",
+    "mqtt": "^0.3.12",
+    "redis": "^0.12.1"
+  },
+  "npmName": "mqtt-history"
+}
