@@ -12,15 +12,19 @@ program.version('0.0.3')
   .option('-t, --timestamp', 'Add timestamp to redis saved payload')
   .option('-r, --redisprefix [mqtt port]', 'Redis prefix', 'mqtt-history')
   .option('-s, --skipnullpayload', 'Do not save null payload')
+  .option('-d, --debug', 'Debug mode')
+  
 	.parse(process.argv);
 
 
 program.timestamp = program.timestamp || false;
 program.skipnullpayload = program.skipnullpayload || false;
+program.debug = program.debug || false;
 //------------ DEBUG
-var debug_on = true;
 function debug() {
-  if (debug_on) console.log.apply(this, arguments);
+  if (program.debug) {
+    console.log.apply(this, arguments);
+  }
 }
 
 var nop = function() {};
